@@ -1,63 +1,73 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
-const path = require('path')
-const url = require('url')
+const { app, BrowserWindow } = require("electron");
+const path = require("path");
+const url = require("url");
 
+let win, splash;
+let onlineStatusWindow;
+var IMG_DIR = "/img/";
 
-let win
-let onlineStatusWindow
-var IMG_DIR = '/img/'
+function createWindow() {
+    win = new BrowserWindow({
+        width: 1314,
+        height: 748,
+        titleBarStyle: "hidden",
+        show: false,
+        
+         icon: path.join(__dirname, IMG_DIR, "logo.png"),
+        // transparent: true,
+         webPreferences: {
+        //     preload: path.join(__dirname, "preload.js"),
+        //     nodeIntegration: true,
+                devTools: false,
+         },
+    });
+    splash = new BrowserWindow({ width: 810, height: 610, transparent: true, frame: false, alwaysOnTop: true });
+    splash.loadURL(`file://${__dirname}/splash.html`);
+    win.loadFile("index.html");
+}
 
+app.on("ready", () => {
+    // Create the browser window.
+    createWindow();
+    // and load the index.html of the app.
 
-app.on('ready', () => {
-  // Create the browser window.
-  win = new BrowserWindow({
-    width: 1314,
-    height: 748,
-    titleBarStyle: 'hiddenInset',
-    frame: false,
-    icon: path.join(__dirname, IMG_DIR, 'logo.png'),
-    transparent: true,
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true
-    }
-  })
-})
+    // Open the DevTools.
+    //win.webContents.openDevTools()
 
-  // and load the index.html of the app.
-  win.loadFile('index.html')
+    // Emitted when the window is closed.
+    win.on("closed", () => {
+        // Dereference the window object, usually you would store windows
+        // in an array if your app supports multi windows, this is the time
+        // when you should delete the corresponding element.
+        win = null;
+    });
 
-  // Open the DevTools.
-  //win.webContents.openDevTools()
-
-  // Emitted when the window is closed.
-  win.on('closed', () => {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
-    win = null
-  })
-
+    win.once("ready-to-show", () => {
+        setTimeout(() => {
+            splash.destroy();
+            win.show();
+        }, 5000);
+    });
+});
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
 
 // Quit when all windows are closed.
-app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
-  if (process.platform !== 'darwin') {
-    app.quit()
-  }
-})
+app.on("window-all-closed", () => {
+    // On macOS it is common for applications and their menu bar
+    // to stay active until the user quits explicitly with Cmd + Q
+    if (process.platform !== "darwin") {
+        app.quit();
+    }
+});
 
-app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
-  if (win === null) {
-    createWindow()
-  }
-})
+app.on("activate", () => {
+    // On macOS it's common to re-create a window in the app when the
+    // dock icon is clicked and there are no other windows open.
+    if (win === null) {
+        createWindow();
+    }
+});
