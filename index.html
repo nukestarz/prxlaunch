@@ -48,11 +48,32 @@ http://themeforest.net/licenses
 	<link rel="stylesheet" href="css/main_responsive.css">
 
 	<script src="js/vendor/modernizr-2.7.1.min.js"></script>
-	<script src="./main.js"></script>
+    <script src="./main.js"></script>
+	<script>
+	var hello = getPlayers();
+	document.getElementById('onliners').innerHTML = hello;
+	</script>
+
+	
 </head>
 
 <body id="menu" class="alt-bg">
-	
+	<script>
+		// 1. Require the installed module
+		const customTitlebar = require('custom-electron-titlebar');
+
+		// 2. Create the custom titlebar with your own settings
+		//    To make it work, we just need to provide the backgroundColor property
+		//    Other properties are optional.
+		let MyTitleBar = new customTitlebar.Titlebar({
+			backgroundColor: customTitlebar.Color.fromHex('#03a9f4'),
+			shadow: true,
+			icon: './icon.svg'
+		});
+		
+		// 3. Update Titlebar text
+		MyTitleBar.updateTitle('Paradox RP PH');
+	</script>
 	
 	<!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -124,13 +145,13 @@ http://themeforest.net/licenses
 			<li data-menuanchor="about-us">
 				<a href="#about-us">
 					<i class="icon lnr lnr-flag"></i>
-					<span class="title">Buy Coins</span>
+					<span class="title">Buy XCoins</span>
 				</a>
 			</li>
 			<li data-menuanchor="contact">
 				<a href="#contact">
 					<i class="icon lnr lnr-phone"></i>
-					<span class="title">Contact</span>
+					<span class="title">Game Rules</span>
 				</a>
 			</li>
 		</ul>
@@ -206,22 +227,22 @@ http://themeforest.net/licenses
 							 ></div>
 						<div class="img-top">
 							<div class="tile-hours anim-zoomin anim-1">
-								<span class="hours">00</span>
-								<span class="txt">hours</span>
+								<span class="">220</span>
+								<span class="txt">Resources</span>
 							</div>
 						</div>
 						<div class="img-middle bg-img" data-image-src="img/bg-sample1.jpg">
 							<div class="tile-days">
-								<span class="days">00</span>
+								<span id="onliners">00</span>
 								<span class="txt">Players Online</span>
 							</div>
 							<div class="tile-minutes anim-zoomin anim-2">
-								<span class="minutes">00</span>
-								<span class="txt">minutes</span>
+								<span class="">128</span>
+								<span class="txt">Max Player</span>
 							</div>
 							<div class="tile-seconds anim-zoomin anim-3">
-								<span class="seconds">00</span>
-								<span class="txt">seconds</span>
+								<span class="">01</span>
+								<span class="txt">Servers</span>
 							</div>
 						</div>
 					</div>
@@ -231,7 +252,7 @@ http://themeforest.net/licenses
 					<div class="anim-slideright">
 						<header class="header">
 							<h2>Paradox <strong>V3</strong></h2>
-							<h3>An awesome new company.</h3>
+							<h3>We are on a Legacy!</h3>
 						</header>
 						<div class="desc">
 									<p>Paradox Legacy V3 will be available here soon.</p>
@@ -287,12 +308,15 @@ http://themeforest.net/licenses
 				<div class="c-right">
 					<div class="anim-slideright">
 						<header class="header">
-							<h2>About <strong>Us</strong></h2>
-							<h3>We make great things. How is that possible ?</h3>
+							<h2>Buy <strong>XCoins</strong></h2>
+							<h3>We make great things with XCoins. How is that possible ?</h3>
 						</header>
 						<article class="desc">
-							<p>Lorem ipsum <strong>magicum </strong>dolor sit amet, consectetur adipiscing elit. Maecenas a sem ultrices neque vehicula fermentum a sit amet nulla.</p>
-							<p>Aenean ultricies odio at erat facilisis tincidunt. Fusce tempor auctor justo, nec facilisis quam vehicula vel. Aenean non mattis purus, eget lobortis odio. </p>
+							<p>This in-game currency <strong>XCOINS </strong>can be used to purchase a car, skins and a lot more xCoin related products through the in-game store of Paradox V3.</p>
+							<p>xCoins can be brought through Paypal. if you request another payment method, please contact our support team. </p>
+							<p><div class="btns">
+								<a class="btn" href="https://theparadox.city/buy-coins/">Buy XCoins</a>&nbsp;&nbsp;&nbsp;<a class="btn" href="https://theparadox.city/buy-coins/">Contact Us</a>
+							</div></p>
 						</article>
 						<!--<div class="btns">
 							<a class="btn" href="#register">Regiter</a>
@@ -304,7 +328,7 @@ http://themeforest.net/licenses
 			<!-- Arrows scroll down/up -->
 			<footer class="s-footer p-scrolldown">
 				<a class="down btn" href="#register">
-					<span>Get notified</span>
+					<span>Get your XCoins now!</span>
 				</a>
 			</footer>
 		</div>
@@ -358,7 +382,7 @@ http://themeforest.net/licenses
 			<!-- Arrows scroll down/up -->
 			<footer class="s-footer p-scrolldown">
 				<a class="down btn" href="#contact">
-					<span>Contact</span>
+					<span>Game Rules</span>
 				</a>
 			</footer>
 		</div>
@@ -416,8 +440,8 @@ http://themeforest.net/licenses
 				<div class="c-right c-contact">
 					<div class="anim-slideright">
 						<header class="header">
-							<h2><strong>Contact</strong> us</h2>
-							<h3><span>Want to say hello?</span></h3> 
+							<h2><strong>Game</strong> Rules</h2>
+							<h3><span>Take time to read!</span></h3> 
 						</header>
 						<article class="desc">
 							<ul>
@@ -426,21 +450,35 @@ http://themeforest.net/licenses
 										<i class="icon lnr lnr-map"></i>
 										<span class="readable">Address</span>
 									</div>
-									<div class="data">99 Street at our address City<br>This Continent Island - Earth</div>
+									<div class="data">Do not RDM/VDM</div>
 								</li>
 								<li>
 									<div class="title">
-										<i class="icon lnr lnr-envelope"></i>
-										<span class="readable">Email</span>
+										<i class="icon lnr lnr-map"></i>
+										<span class="readable">Address</span>
 									</div>
-									<div><a href="mailto://contact@mail.com" title="mail">contactemail@mail.com</a></div>
+									<div class="data">Do not RDM/VDM</div>
 								</li>
 								<li>
 									<div class="title">
-										<i class="icon lnr lnr-phone-handset"></i>
-										<span class="readable">Email</span>
+										<i class="icon lnr lnr-map"></i>
+										<span class="readable">Address</span>
 									</div>
-									<div class="data">+0 1 23 4567 89</div>
+									<div class="data">Do not RDM/VDM</div>
+								</li>
+								<li>
+									<div class="title">
+										<i class="icon lnr lnr-map"></i>
+										<span class="readable">Address</span>
+									</div>
+									<div class="data">Do not RDM/VDM</div>
+								</li>
+								<li>
+									<div class="title">
+										<i class="icon lnr lnr-map"></i>
+										<span class="readable">Address</span>
+									</div>
+									<div class="data">Do not RDM/VDM</div>
 								</li>
 							</ul>
 						</article>
@@ -451,7 +489,7 @@ http://themeforest.net/licenses
 			<!-- Arrows scroll down/up -->
 			<footer class="s-footer p-scrolldown">
 				<a class="down btn" href="#write-message">
-					<span>Write to us</span>
+					<span>Game Rules</span>
 				</a>
 			</footer>
 
