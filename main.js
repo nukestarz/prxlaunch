@@ -3,13 +3,13 @@ const { app, BrowserWindow } = require("electron");
 const path = require("path");
 const url = require("url");
 const FiveM = require("fivem");
-const srv = new FiveM.Server('131.153.76.90:30120');
+// const srv = new FiveM.Server('131.153.76.90:30120');
 
 let win, splash;
 let onlineStatusWindow;
 var IMG_DIR = "/img/";
 
-srv.getPlayers().then(data => console.log(data))
+// srv.getPlayers().then(data => console.log(data))
 
 function createWindow() {
     win = new BrowserWindow({
@@ -23,14 +23,16 @@ function createWindow() {
         // transparent: true,
          webPreferences: {
             preload: path.join(__dirname, "preload.js"),
-            //nodeIntegration: true,
-                devTools: true,
+            // nodeIntegration: true,
+            // devTools: true,
          },
     });
     win.setMenu(null)
+    
     splash = new BrowserWindow({ width: 810, height: 610, transparent: true, frame: false, alwaysOnTop: true });
     splash.loadURL(`file://${__dirname}/splash.html`);
     win.loadFile("index.html");
+    // win.webContents.openDevTools();
 }
 
 app.on("ready", () => {

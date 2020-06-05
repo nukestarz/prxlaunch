@@ -14,3 +14,5 @@ screenerExit.addEventListener( "click", e => {
   var window = remote.getCurrentWindow();
   window.close();
  } );
+
+ 
