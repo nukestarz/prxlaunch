@@ -32,7 +32,7 @@ function createWindow() {
     splash = new BrowserWindow({ width: 810, height: 610, transparent: true, frame: false, alwaysOnTop: true });
     splash.loadURL(`file://${__dirname}/splash.html`);
     win.loadFile("index.html");
-    // win.webContents.openDevTools();
+    win.webContents.openDevTools();
 }
 
 app.on("ready", () => {
