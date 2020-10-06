@@ -17,7 +17,7 @@
   "author": "Franz Abiva",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^9.0.0",
+    "electron": "^9.3.1",
     "node-require": "0.0.10"
   },
   "dependencies": {
